@@ -1,0 +1,28 @@
+main:
+
+  - title: "Emergency Stop System of Computer Vision Workstation Based on GMM-HMM and LSTM"
+    authors: <strong>Muhuan Wu</strong>, Fangrui Guo, Junwei Wu, Yuliang Xiao, Mingyu Jin, Quan Zhang* (*Corresponding authors)
+    conference_short: ICARA
+    conference: 2023 9th International Conference on Automation, Robotics and Applications <strong>(ICARA)</strong>, 2023.
+    bibtex: https://ieeexplore.ieee.org/document/10125926
+    image: ./assets/img/AD065.jpg
+    notes: Published
+
+  - title: "Automated Report Generation and Knowledege Management System for Photovoltaic Power Stations using Knowledge Graphs"
+    authors: Aili Pang, Shihao Wang*, <strong>Muhuan Wu</strong>, Junrui Zhang
+    conference_short: EMIS
+    conference: Proceedings of the 2024 3rd International Conference on Engineering Management and Information Science <strong>(EMIS)</strong>, 2024.
+    page: https://www.atlantis-press.com/proceedings/emis-24/126001418
+    bibtex: https://www.atlantis-press.com/proceedings/emis-24/126001418
+    notes: Published
+    image: ./assets/img/KG.png
+
+
+  - title: "A Multimodal Virtual Reality System for Switchgear Operation Training: Integration of Dynamic Gestureand Speech Recognition"
+    authors: Dan Fang, Yuliang Jiang, Jiangwei Chen, Guoliang Zhang
+    conference_short: AIVRV
+    conference:  2024 4th International Conference on Artificial Intelligence, Virtual Reality and Visualization <strong>(AIVRV)</strong>, 2024.
+#    page: https://www.atlantis-press.com/proceedings/emis-24/126001418
+#    bibtex: https://www.atlantis-press.com/proceedings/emis-24/126001418
+    notes: Accepted
+    image: ./assets/img/SwitchGear.jpg
