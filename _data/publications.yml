@@ -24,5 +24,6 @@ main:
     conference:  2024 4th International Conference on Artificial Intelligence, Virtual Reality and Visualization <strong>(AIVRV)</strong>, 2024.
 #    page: https://www.atlantis-press.com/proceedings/emis-24/126001418
 #    bibtex: https://www.atlantis-press.com/proceedings/emis-24/126001418
-    notes: Accepted
+    notes: Published
+    bibtex: https://ieeexplore.ieee.org/document/10859792
     image: ./assets/img/SwitchGear.jpg
