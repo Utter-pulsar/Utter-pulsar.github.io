@@ -12,7 +12,7 @@ main:
     authors: Aili Pang, Shihao Wang*, <strong>Muhuan Wu</strong>, Junrui Zhang
     conference_short: EMIS
     conference: Proceedings of the 2024 3rd International Conference on Engineering Management and Information Science <strong>(EMIS)</strong>, 2024.
-    page: https://www.atlantis-press.com/proceedings/emis-24/126001418
+#    page: https://www.atlantis-press.com/proceedings/emis-24/126001418
     bibtex: https://www.atlantis-press.com/proceedings/emis-24/126001418
     notes: Published
     image: ./assets/img/KG.png
