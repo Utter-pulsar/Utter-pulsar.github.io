@@ -31,6 +31,7 @@ I am passionate about applying cutting-edge technologies to solve multidisciplin
 ## News
 
 - **[Jan. 2025]** Our team has accomplished the baseline of RAG-Agent and Text2SQL codes.
+- **[Nov. 2024]** Obtained the PMP certificate.
 - **[Oct. 2024]** The paper about Multimodal Virtual Reality System that I contribute with has been accepted by AIVRV 2024.
 - **[Apr. 2024]** EMIS 2024 has accepted my paper about the Knowledge-Graph based report generation.
 - **[Jan. 2023]** My paper about Emergency Stop System is accepted to ICARA 2023.
