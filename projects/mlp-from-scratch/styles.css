@@ -30,6 +30,8 @@ html {
 
 body {
   min-height: 100vh;
+  max-width: 100%;
+  overflow-x: hidden;
   background:
     radial-gradient(circle at 50% 0%, rgba(155, 215, 255, .105), transparent 28%),
     radial-gradient(circle at 88% 18%, rgba(255, 173, 99, .075), transparent 26%),
@@ -756,6 +758,13 @@ blockquote {
   margin-right: 0;
 }
 
+.prose-section h2,
+.prose-section p:not(.section-label),
+blockquote {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
 .wide-equation {
   width: 100%;
   max-width: 100%;
@@ -845,7 +854,20 @@ mjx-container[jax="CHTML"][display="true"] {
 
   .article-shell,
   .article-wide {
-    width: min(100% - 28px, var(--max));
+    width: calc(100vw - 28px);
+    max-width: calc(100vw - 28px);
+  }
+
+  .article-grid,
+  .article-body,
+  .prose-section,
+  .formula-grid,
+  .equation-card,
+  .code-card,
+  .status-panel,
+  blockquote {
+    width: 100%;
+    max-width: 100%;
   }
 
   .hero {
@@ -894,14 +916,26 @@ mjx-container[jax="CHTML"][display="true"] {
   .network-figure {
     padding: 10px;
     border-radius: 20px;
+    overflow-x: auto;
   }
 
   .network-figure svg {
+    width: 720px;
+    max-width: none;
     min-height: 260px;
   }
 
-  .prose-section p:not(.section-label) {
-    font-size: 15px;
+  .figure-equation,
+  .equation-card,
+  .code-card {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  mjx-container {
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
   }
 }
 
