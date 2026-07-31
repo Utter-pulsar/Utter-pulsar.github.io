@@ -3,16 +3,31 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MLP From Scratch — Utter Pulsar</title>
-  <meta name="description" content="MLP From Scratch is a neural network study by Utter Pulsar. A full project page is coming soon.">
+  <title>MLP Without Third-Party Library — Utter Pulsar</title>
+  <meta name="description" content="A dark editorial project page for MLP Without Third-Party Library, explaining forward propagation, backpropagation, sigmoid, softmax, MSE, and cross entropy with LaTeX formulas.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2032%2032%27%3E%3Crect%20width%3D%2732%27%20height%3D%2732%27%20rx%3D%278%27%20fill%3D%27%23070709%27/%3E%3Ccircle%20cx%3D%2716%27%20cy%3D%2716%27%20r%3D%277%27%20fill%3D%27none%27%20stroke%3D%27%23a8d8ff%27%20stroke-width%3D%271.8%27/%3E%3Cpath%20d%3D%27M5%2017c5-7%2016-7%2022%200M7%2022c4-4%2014-4%2018%200%27%20fill%3D%27none%27%20stroke%3D%27%23ffb35c%27%20stroke-width%3D%271.6%27%20stroke-linecap%3D%27round%27/%3E%3C/svg%3E"}
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../coming-soon.css">
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [["\\(", "\\)"], ["$", "$"]],
+        displayMath: [["\\[", "\\]"], ["$$", "$$"]]
+      },
+      chtml: {
+        scale: 1,
+        displayAlign: "center"
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 </head>
 <body>
-  <div class="page-bg" aria-hidden="true"></div>
-  <div class="grain" aria-hidden="true"></div>
+  <div class="progress" id="progress"></div>
+  <div class="page-noise" aria-hidden="true"></div>
+  <div class="ambient" aria-hidden="true"><span></span><span></span></div>
 
   <header class="site-header">
     <a class="brand" href="../../index.html" aria-label="Back to Utter Pulsar home">
@@ -21,25 +36,460 @@
     </a>
     <nav class="top-nav" aria-label="Project navigation">
       <a href="../../index.html">Home</a>
-      <a href="https://github.com/Utter-pulsar" target="_blank" rel="noreferrer">GitHub</a>
+      <a href="https://github.com/Utter-pulsar/MLP-without-third-party-library" target="_blank" rel="noreferrer">Project</a>
     </nav>
   </header>
 
   <main>
-    <section class="soon-card" aria-label="MLP From Scratch coming soon">
-      <p class="kicker">MLP From Scratch · neural networks by hand</p>
-      <h1>Coming soon.</h1>
-      <p class="lede">A dedicated page for MLP From Scratch is being prepared. It will introduce the process of building neural network fundamentals without relying on third-party machine learning libraries.</p>
-      <div class="status-row" aria-label="Project status">
-        <span>MLP</span>
-        <span>Python</span>
-        <span>From scratch</span>
-        <span>In progress</span>
+    <section class="hero article-shell">
+      <p class="kicker">MLP without third-party library · theory note</p>
+      <h1>Neural networks, derived by hand.</h1>
+      <p class="lede">This project was made for people who are just entering neural networks: to make forward propagation and backward propagation feel less like hidden magic and more like a sequence of equations that can be understood, coded, and debugged by hand.</p>
+      <div class="hero-meta" aria-label="Project facts">
+        <span>Forward propagation</span>
+        <span>Backpropagation</span>
+        <span>Sigmoid · MSE</span>
+        <span>Softmax · Cross entropy</span>
       </div>
-      <div class="actions">
-        <a href="../../index.html">Back to home</a>
+      <div class="hero-links">
+        <a href="https://github.com/Utter-pulsar/MLP-without-third-party-library" target="_blank" rel="noreferrer">View project repository</a>
       </div>
     </section>
+
+    <section class="feature-panel article-wide" aria-label="MLP schematic">
+      <div class="feature-copy">
+        <p class="section-label">Core model</p>
+        <h2>A three-layer MLP, expanded until every gradient has a place.</h2>
+        <p>The original theory note derives the full path from input values to output probabilities, then walks backward from loss to every weight and bias. The page below rewrites that note as HTML and LaTeX rather than embedding the PDF directly.</p>
+      </div>
+      <figure class="network-figure" aria-label="A schematic diagram of a multilayer perceptron">
+        <svg viewBox="0 0 880 520" role="img" aria-labelledby="mlp-title mlp-desc">
+          <title id="mlp-title">Schematic diagram of MLP</title>
+          <desc id="mlp-desc">Input layer nodes connect to hidden layer nodes, which connect to output layer nodes.</desc>
+          <defs>
+            <linearGradient id="edge" x1="0" x2="1">
+              <stop offset="0" stop-color="#a8d8ff" stop-opacity=".22"></stop>
+              <stop offset="1" stop-color="#ffb35c" stop-opacity=".28"></stop>
+            </linearGradient>
+            <radialGradient id="node" cx="50%" cy="44%" r="60%">
+              <stop offset="0" stop-color="#ffffff" stop-opacity=".92"></stop>
+              <stop offset=".36" stop-color="#a8d8ff" stop-opacity=".5"></stop>
+              <stop offset="1" stop-color="#0c121a" stop-opacity="1"></stop>
+            </radialGradient>
+          </defs>
+          <g class="edges">
+            <path d="M170 140 L438 95 M170 140 L438 205 M170 140 L438 315 M170 140 L438 425"></path>
+            <path d="M170 260 L438 95 M170 260 L438 205 M170 260 L438 315 M170 260 L438 425"></path>
+            <path d="M170 380 L438 95 M170 380 L438 205 M170 380 L438 315 M170 380 L438 425"></path>
+            <path d="M438 95 L710 150 M438 95 L710 260 M438 95 L710 370"></path>
+            <path d="M438 205 L710 150 M438 205 L710 260 M438 205 L710 370"></path>
+            <path d="M438 315 L710 150 M438 315 L710 260 M438 315 L710 370"></path>
+            <path d="M438 425 L710 150 M438 425 L710 260 M438 425 L710 370"></path>
+          </g>
+          <g class="nodes input">
+            <circle cx="170" cy="140" r="36"></circle><text x="170" y="146">x₁</text>
+            <circle cx="170" cy="260" r="36"></circle><text x="170" y="266">x₂</text>
+            <circle cx="170" cy="380" r="36"></circle><text x="170" y="386">b₁</text>
+          </g>
+          <g class="nodes hidden">
+            <circle cx="438" cy="95" r="42"></circle>
+            <circle cx="438" cy="205" r="42"></circle>
+            <circle cx="438" cy="315" r="42"></circle>
+            <circle cx="438" cy="425" r="42"></circle><text x="438" y="431">b₂</text>
+          </g>
+          <g class="nodes output">
+            <circle cx="710" cy="150" r="38"></circle><text x="782" y="156">y₁</text>
+            <circle cx="710" cy="260" r="38"></circle><text x="782" y="266">y₂</text>
+            <circle cx="710" cy="370" r="38"></circle><text x="782" y="376">y₃</text>
+          </g>
+          <g class="layer-labels">
+            <text x="170" y="32">Input layer</text>
+            <text x="438" y="32">Hidden layer</text>
+            <text x="710" y="32">Output layer</text>
+          </g>
+        </svg>
+        <figcaption>Figure 1: The schematic diagram of MLP.</figcaption>
+        <div class="figure-equation" aria-label="Node input equation">
+          <span>Node input</span>
+          \[
+            u = \sum_i w_i x_i + b
+          \]
+        </div>
+      </figure>
+    </section>
+
+    <div class="article-grid article-shell">
+      <aside class="toc" aria-label="Table of contents">
+        <a href="#intention" class="active">Intention</a>
+        <a href="#forward">Forward</a>
+        <a href="#backward">Backward</a>
+        <a href="#sensitivity">Sensitivity</a>
+        <a href="#sigmoid">Sigmoid</a>
+        <a href="#softmax">Softmax</a>
+        <a href="#stability">Stability</a>
+      </aside>
+
+      <article class="article-body">
+        <section id="intention" class="prose-section">
+          <p class="section-label">Project intention</p>
+          <h2>Why rebuild an MLP without deep-learning libraries?</h2>
+          <p>The intention of this project is simple: for friends who have just started learning neural networks, it is often difficult to see what forward propagation and backward propagation are really doing. A framework can train a model in a few lines, but it can also hide the chain rule, the gradients, the shapes of matrices, and the reason parameters change.</p>
+          <p>So this project implements a multilayer perceptron with explicit derivation and explicit Python code. The network uses Fashion-MNIST as the dataset, and contains two derivation paths: sigmoid with mean squared error, and softmax with cross entropy.</p>
+          <blockquote>Build the network once by hand, and the equations stop being symbols on a page. They become the code path of learning itself.</blockquote>
+        </section>
+
+        <section id="forward" class="prose-section">
+          <p class="section-label">1 · Introduction / 2.1 · Forward propagation</p>
+          <h2>Forward propagation turns input information into a prediction.</h2>
+          <p>This is an introduction of the theory of MLP, illustrated by derivation with both MSE using sigmoid and cross entropy using softmax. Forward propagation can be understood as the process of network prediction: it transforms input information into classification results.</p>
+          <p>Suppose the input layer information is \([x_1, x_2, x_3]\). For layer \(l\), \(L_l\) represents all neurons of the layer, the output is \(y_l\), the output of the \(j\)-th node is \(y_l^{(j)}\), the input of that node is \(u_l^{(j)}\), the weight matrix connecting layer \(l\) and layer \(l-1\) is \(W_l\), and the weight from the \(i\)-th node of the previous layer to the \(j\)-th node of layer \(l\) is \(w_l^{ji}\).</p>
+          <div class="equation-card">
+            <span>Equation 1</span>
+            \[
+              \begin{cases}
+                y_2^{(1)} = f(u_2^{(1)}) = f\left(\sum_{i=1}^{n} w_2^{1i}x_i + b_2^{(1)}\right) \\
+                y_2^{(2)} = f(u_2^{(2)}) = f\left(\sum_{i=1}^{n} w_2^{2i}x_i + b_2^{(2)}\right)
+              \end{cases}
+            \]
+          </div>
+          <p>To make this easy to code, the first equation can be written as a matrix expression:</p>
+          <div class="equation-card wide-equation">
+            <span>Equation 2</span>
+            \[
+              y_2 =
+              \begin{bmatrix}
+                y_2^{(1)} \\
+                y_2^{(2)}
+              \end{bmatrix}
+              = f\left(
+              \begin{bmatrix}
+                w_2^{11} & w_2^{12} & w_2^{13} \\
+                w_2^{21} & w_2^{22} & w_2^{23}
+              \end{bmatrix}
+              \begin{bmatrix}
+                x_1 \\
+                x_2 \\
+                x_3
+              \end{bmatrix}
+              +
+              \begin{bmatrix}
+                b_2^{(1)} \\
+                b_2^{(2)}
+              \end{bmatrix}
+              \right)
+              = f(W_2X + b_2)
+            \]
+          </div>
+          <p>Extending the forward propagation calculation process of the second layer to any layer in the network gives:</p>
+          <div class="equation-card">
+            <span>Equation 3</span>
+            \[
+              \begin{cases}
+                y_l^{(j)} = f(u_l^{(j)}) \\
+                u_l^{(j)} = \sum_{i\in L_{l-1}} w_l^{ji}y_{l-1}^{(i)} + b_l^{(j)} \\
+                y_l = f(u_l) = f(W_ly_{l-1}+b_l)
+              \end{cases}
+            \]
+          </div>
+          <p>Here, \(f(\cdot)\) is the activation function, and \(b_l^{(j)}\) is the bias of the \(j\)-th node in layer \(l\).</p>
+        </section>
+
+        <section id="backward" class="prose-section">
+          <p class="section-label">2.2 · Backward propagation</p>
+          <h2>Backward propagation asks how each parameter changed the loss.</h2>
+          <p>After the basic model is built, the process of training is to update the model parameters. Due to the multi-layer network structure, it is not possible to directly update the parameters of the hidden layer by the loss function. Instead, the loss is propagated from the top layer to the bottom layer to estimate the parameters.</p>
+          <p>Suppose there are multiple neurons in the output layer of the multilayer perceptron, and each neuron corresponds to a label. The input sample is \(x=[x_1,x_2,\ldots,x_n]\), and the label is \(t\). For the output layer, this note includes two loss functions:</p>
+          <div class="formula-grid">
+            <div class="equation-card">
+              <span>Equation 4 · MSE</span>
+              \[
+                E_{MSE}=\frac{1}{2}\sum_{j\in L_k}\left(t^j-y_k^{(j)}\right)^2
+              \]
+            </div>
+            <div class="equation-card">
+              <span>Equation 5 · Cross entropy</span>
+              \[
+                E_{Cross\ Entropy}=-\sum_j t^j\cdot \log(y_k^{(j)})
+              \]
+            </div>
+          </div>
+          <p>The loss function determines how the output layer parameters are updated. In order to improve training accuracy, the loss function with sigmoid as the output activation is defined as MSE, while the loss function with softmax as the output activation is defined as cross entropy. To minimize the loss, gradient descent is used.</p>
+          <div class="equation-card wide-equation">
+            <span>Equation 6 · Chain rule for each parameter</span>
+            \[
+              \begin{cases}
+              \dfrac{\partial E}{\partial w_l^{(ji)}}
+              = \dfrac{\partial E}{\partial y_l^{(j)}}\dfrac{\partial y_l^{(j)}}{\partial w_l^{(ji)}}
+              = \dfrac{\partial E}{\partial y_l^{(j)}}\dfrac{\partial y_l^{(j)}}{\partial u_l^{(j)}}\dfrac{\partial u_l^{(j)}}{\partial w_l^{(ji)}} \\
+              \dfrac{\partial E}{\partial b_l^{(j)}}
+              = \dfrac{\partial E}{\partial y_l^{(j)}}\dfrac{\partial y_l^{(j)}}{\partial b_l^{(j)}}
+              = \dfrac{\partial E}{\partial y_l^{(j)}}\dfrac{\partial y_l^{(j)}}{\partial u_l^{(j)}}\dfrac{\partial u_l^{(j)}}{\partial b_l^{(j)}}
+              \end{cases}
+            \]
+          </div>
+          <p>The following three derivatives are easy to derive from the definition of the forward pass:</p>
+          <div class="equation-card">
+            <span>Equation 7</span>
+            \[
+              \begin{cases}
+                \dfrac{\partial y_l^{(j)}}{\partial u_l^{(j)}} = f'(u_l^{(j)}) \\
+                \dfrac{\partial u_l^{(j)}}{\partial w_l^{(ji)}} = y_{l-1}^{(i)} \\
+                \dfrac{\partial u_l^{(j)}}{\partial b_l^{(j)}} = 1
+              \end{cases}
+            \]
+          </div>
+          <p>Therefore, the parameter gradients become:</p>
+          <div class="equation-card wide-equation">
+            <span>Equation 8</span>
+            \[
+              \begin{cases}
+              \dfrac{\partial E}{\partial w_l^{(ji)}}
+              = \dfrac{\partial E}{\partial y_l^{(j)}}\dfrac{\partial y_l^{(j)}}{\partial u_l^{(j)}}\dfrac{\partial u_l^{(j)}}{\partial w_l^{(ji)}}
+              = \dfrac{\partial E}{\partial y_l^{(j)}}f'(u_l^{(j)})y_{l-1}^{(i)} \\
+              \dfrac{\partial E}{\partial b_l^{(j)}}
+              = \dfrac{\partial E}{\partial y_l^{(j)}}\dfrac{\partial y_l^{(j)}}{\partial u_l^{(j)}}\dfrac{\partial u_l^{(j)}}{\partial b_l^{(j)}}
+              = \dfrac{\partial E}{\partial y_l^{(j)}}f'(u_l^{(j)})
+              \end{cases}
+            \]
+          </div>
+          <p>Each node in the next layer is related to all nodes from the former layer. The loss function can therefore be considered as a function of the input of each node in the next layer:</p>
+          <div class="equation-card wide-equation">
+            <span>Equation 9</span>
+            \[
+              \begin{aligned}
+              \dfrac{\partial E}{\partial y_l^{(j)}}
+              &= \dfrac{\partial E\left(u_{l+1}^{(1)},u_{l+1}^{(2)},\ldots,u_{l+1}^{(k)},\ldots,u_{l+1}^{(K)}\right)}{\partial y_l^{(j)}} \\
+              &= \sum_{k\in L_{l+1}} \dfrac{\partial E}{\partial u_{l+1}^{(k)}}\dfrac{\partial u_{l+1}^{(k)}}{\partial y_l^{(j)}} \\
+              &= \sum_{k\in L_{l+1}} \dfrac{\partial E}{\partial y_{l+1}^{(k)}}\dfrac{\partial y_{l+1}^{(k)}}{\partial u_{l+1}^{(k)}}\dfrac{\partial u_{l+1}^{(k)}}{\partial y_l^{(j)}} \\
+              &= \sum_{k\in L_{l+1}} \dfrac{\partial E}{\partial y_{l+1}^{(k)}}\dfrac{\partial y_{l+1}^{(k)}}{\partial u_{l+1}^{(k)}}w_{l+1}^{kj}
+              \end{aligned}
+            \]
+          </div>
+        </section>
+
+        <section id="sensitivity" class="prose-section">
+          <p class="section-label">Node sensitivity</p>
+          <h2>The gradient becomes easier once the node sensitivity is named.</h2>
+          <p>For better understanding of calculation, define \(\delta=\partial E/\partial u\) as the rate of change of error to input. This is node sensitivity. Therefore, the node sensitivity of the \(j\)-th node from layer \(l\) is:</p>
+          <div class="equation-card">
+            <span>Equation 10</span>
+            \[
+              \delta_l^{(j)} = \dfrac{\partial E}{\partial u_l^{(j)}}
+              = \dfrac{\partial E}{\partial y_l^{(j)}}\dfrac{\partial y_l^{(j)}}{\partial u_l^{(j)}}
+              = \dfrac{\partial E}{\partial y_l^{(j)}}f'(u_l^{(j)})
+            \]
+          </div>
+          <p>Applying node sensitivity to the derivation of the loss function simplifies the upstream error term:</p>
+          <div class="equation-card wide-equation">
+            <span>Equation 11</span>
+            \[
+              \begin{aligned}
+              \dfrac{\partial E}{\partial y_l^{(j)}}
+              &= \sum_{k\in L_{l+1}} \dfrac{\partial E}{\partial y_{l+1}^{(k)}}\dfrac{\partial y_{l+1}^{(k)}}{\partial u_{l+1}^{(k)}}w_{l+1}^{kj} \\
+              &= \sum_{k\in L_{l+1}}\delta_{l+1}^{(k)}w_{l+1}^{kj}
+              \end{aligned}
+            \]
+          </div>
+          <p>For the output layer, there is no next layer to consider. The output of the final layer is directly related to the error. Therefore, after multiplying by \(f'(u_l^{(j)})\), the sensitivity can be written as:</p>
+          <div class="equation-card wide-equation">
+            <span>Equation 12</span>
+            \[
+              \delta_l^{(j)} = \dfrac{\partial E}{\partial y_l^{(j)}}f'(u_l^{(j)}) =
+              \begin{cases}
+              f'(u_l^{(j)})\displaystyle\sum_{k\in L_{l+1}}\delta_{l+1}^{(k)}w_{l+1}^{kj}, & \text{if } l \text{ is hidden layer} \\
+              f'(u_l^{(j)})\dfrac{\partial E}{\partial y_l^{(j)}}, & \text{if } l \text{ is output layer}
+              \end{cases}
+            \]
+          </div>
+          <p>The gradient of the loss function with respect to each parameter is:</p>
+          <div class="equation-card wide-equation">
+            <span>Equation 13</span>
+            \[
+              \begin{cases}
+              \dfrac{\partial E}{\partial w_l^{(ji)}} = \dfrac{\partial E}{\partial u_l^{(j)}}\dfrac{\partial u_l^{(j)}}{\partial w_l^{(ji)}} = \delta_l^{(j)}y_{l-1}^{(i)} \\
+              \dfrac{\partial E}{\partial b_l^{(j)}} = \dfrac{\partial E}{\partial u_l^{(j)}}\dfrac{\partial u_l^{(j)}}{\partial b_l^{(j)}} = \delta_l^{(j)}
+              \end{cases}
+            \]
+          </div>
+          <p>To make it suitable for every node and easy to code, the matrix form is \(\partial E/\partial W_l = \delta_l y_{l-1}^T\) and \(\partial E/\partial b_l = \delta_l\), where:</p>
+          <div class="equation-card wide-equation">
+            <span>Equation 14</span>
+            \[
+              \delta_l =
+              \begin{cases}
+              (W_{l+1}^{T}\delta_{l+1})\circ f'(u_l), & \text{if } l \text{ is hidden layer} \\
+              \dfrac{\partial E}{\partial y_l}\circ f'(u_l), & \text{if } l \text{ is output layer}
+              \end{cases}
+            \]
+          </div>
+          <p>The symbol \(\circ\) represents multiplication of corresponding elements in a matrix or vector. The update equations of weights from each layer are:</p>
+          <div class="equation-card wide-equation">
+            <span>Equation 15</span>
+            \[
+              \begin{cases}
+              W_l = W_l - \eta\dfrac{\partial E}{\partial W_l} = W_l - \eta\delta_l y_{l-1}^{T} \\
+              b_l = b_l - \eta\dfrac{\partial E}{\partial b_l} = b_l - \eta\delta_l
+              \end{cases}
+            \]
+          </div>
+        </section>
+
+        <section id="sigmoid" class="prose-section">
+          <p class="section-label">2.3 · Derivation of sigmoid and MSE</p>
+          <h2>Sigmoid turns the derivative into a reusable local term.</h2>
+          <p>The sigmoid function can be simplified as:</p>
+          <div class="equation-card">
+            <span>Equation 16</span>
+            \[
+              y_l = \dfrac{1}{1+e^{-x}} = \dfrac{e^x}{e^x+1} = 1-(e^x+1)^{-1}
+            \]
+          </div>
+          <p>Therefore, the derivation of the sigmoid function is:</p>
+          <div class="equation-card wide-equation">
+            <span>Equation 17</span>
+            \[
+              (y_l)' = (-1)(-1)(e^x+1)^{-2}e^x
+              = (e^x+1)^{-2}e^{-2x}e^x
+              = (e^x+1)^{-1}\dfrac{1}{1+e^{-x}}
+              = y_l(1-y_l)
+            \]
+          </div>
+          <p>Referring to the \(E_{MSE}\) equation above, the derivative of the MSE loss function is:</p>
+          <div class="equation-card">
+            <span>Equation 18</span>
+            \[
+              \dfrac{\partial E}{\partial y_l^{(j)}} = y_l^{(j)} - t^{(j)}
+            \]
+          </div>
+          <p>In the sigmoid implementation of this project, the output layer sensitivity becomes the MSE derivative multiplied by the sigmoid derivative:</p>
+          <div class="code-card compact-code">
+            <span>Sigmoid output sensitivity in code</span>
+            <pre><code>sigma_out = (layer_2 - target) * (layer_2 * (1 - layer_2))</code></pre>
+          </div>
+        </section>
+
+        <section id="softmax" class="prose-section">
+          <p class="section-label">2.3.1 · Derivation of softmax and cross entropy</p>
+          <h2>Softmax plus cross entropy collapses into a clean error term.</h2>
+          <p>The derivative of softmax and cross entropy can be considered as:</p>
+          <div class="equation-card">
+            <span>Setup</span>
+            \[
+              \dfrac{\partial E}{\partial u_i} = \sum_j\left(\dfrac{\partial E_j}{\partial y_j}\dfrac{\partial y_j}{\partial u_i}\right)
+            \]
+          </div>
+          <p>For the first derivative \(\partial E_j/\partial y_j\):</p>
+          <div class="equation-card">
+            <span>Equation 19</span>
+            \[
+              \dfrac{\partial E_j}{\partial y_j}
+              = \dfrac{\partial(-t_j\ln y_j)}{\partial y_j}
+              = -t_j\dfrac{1}{y_j}
+            \]
+          </div>
+          <p>As for the softmax part, there are two conditions. When \(i=j\):</p>
+          <div class="equation-card wide-equation">
+            <span>Equation 20</span>
+            \[
+              \dfrac{\partial y_j}{\partial u_i}
+              = \dfrac{\partial\left(\dfrac{e^{z_i}}{\sum_k e^{z_k}}\right)}{\partial z_i}
+              = \dfrac{\sum_k e^{z_k}e^{z_i}-(e^{z_i})^2}{(\sum_k e^{z_k})^2}
+              = \left(\dfrac{e^{z_i}}{\sum_k e^{z_k}}\right)\left(1-\dfrac{e^{z_i}}{\sum_k e^{z_k}}\right)
+              = y_j(1-y_j)
+            \]
+          </div>
+          <p>However, if \(i\neq j\):</p>
+          <div class="equation-card wide-equation">
+            <span>Equation 21</span>
+            \[
+              \dfrac{\partial y_j}{\partial u_i}
+              = \dfrac{\partial\left(\dfrac{e^{z_j}}{\sum_k e^{z_k}}\right)}{\partial z_i}
+              = -e^{z_j}\left(\dfrac{1}{\sum_k e^{z_k}}\right)^2e^{z_i}
+              = -y_i y_j
+            \]
+          </div>
+          <p>Combining the equations above, the final derivation of softmax and cross entropy is:</p>
+          <div class="equation-card wide-equation">
+            <span>Equation 22</span>
+            \[
+              \begin{aligned}
+              \dfrac{\partial E}{\partial u_i}
+              &= \sum_j\left(\dfrac{\partial E_j}{\partial y_j}\dfrac{\partial y_j}{\partial u_i}\right) \\
+              &= \sum_{j\neq i}\left(\dfrac{\partial E_j}{\partial y_j}\dfrac{\partial y_j}{\partial u_i}\right)
+              + \sum_{j=i}\left(\dfrac{\partial E_j}{\partial y_j}\dfrac{\partial y_j}{\partial u_i}\right) \\
+              &= \left(\sum_{j\neq i}-t_j\dfrac{1}{y_j}(-y_iy_j)\right)
+              + \left(-t_i\dfrac{1}{y_i}\right)(y_i(1-y_i)) \\
+              &= \left(\sum_{j\neq i}y_it_j\right)+(-t_i(1-y_i)) \\
+              &= \left(\sum_{j\neq i}y_it_j\right)+y_it_i-t_i \\
+              &= y_i\sum_j t_j-t_i
+              \end{aligned}
+            \]
+          </div>
+          <p>There is only one target value \(t_i\) equal to 1, therefore \(\sum_j t_j=1\). In the end, the final derivative is:</p>
+          <div class="equation-card">
+            <span>Softmax · cross entropy result</span>
+            \[
+              \dfrac{\partial E}{\partial u_i}=y_i-t_i
+            \]
+          </div>
+          <p>In the softmax implementation of this project, this appears directly as the output sensitivity:</p>
+          <div class="code-card compact-code">
+            <span>Softmax output sensitivity in code</span>
+            <pre><code>sigma_out = layer_2 - target</code></pre>
+          </div>
+        </section>
+
+        <section id="stability" class="prose-section status-panel">
+          <p class="section-label">2.3.2 · Problems of coding sigmoid and softmax</p>
+          <h2>The final step is numerical stability.</h2>
+          <p>The program overflowed when designing sigmoid and softmax methods in this project. To solve these problems, the properties of the two activation functions were studied and the equations were rewritten into numerically safer forms.</p>
+          <p>The original sigmoid form is \(\sigma(z)=1/(1+e^{-z})\). When the input is negative with a large absolute value, computing \(e^{-z}\) directly can overflow. To solve this, the sigmoid code is modified as follows:</p>
+          <div class="code-card">
+            <span>Stable sigmoid implementation</span>
+            <pre><code>def sigmoid_function(input):
+    fz = []
+    input = input.tolist()
+    for num in input:
+        if num &gt;= 0:
+            fz.append(1.0 / (1 + math.exp(-num)))
+        else:
+            fz.append(math.exp(num) / (1 + math.exp(num)))
+    output = np.array(fz)
+    return output</code></pre>
+          </div>
+          <p>Similarly, the original form of softmax is:</p>
+          <div class="equation-card">
+            <span>Softmax original form</span>
+            \[
+              y_k = \dfrac{e^{a_k}}{\sum_{i=1}^{n}e^{a_i}}
+            \]
+          </div>
+          <p>If the input signal is too large, the program can overflow. To avoid this, the formula can be modified without changing the result of the activation function:</p>
+          <div class="equation-card">
+            <span>Softmax stable form</span>
+            \[
+              y_k = \dfrac{e^{a_k-C}}{\sum_{i=1}^{n}e^{a_i-C}}
+            \]
+          </div>
+          <p>Here, \(C\) is the maximum number in the input array. The corresponding code is:</p>
+          <div class="code-card">
+            <span>Stable softmax implementation</span>
+            <pre><code>def softmax_function(input):
+    max_input = np.max(input)
+    input = np.exp(input - max_input)
+    sum_input = np.sum(input)
+    output = input / sum_input
+    return output</code></pre>
+          </div>
+          <div class="final-links">
+            <a href="https://github.com/Utter-pulsar/MLP-without-third-party-library" target="_blank" rel="noreferrer">View project repository</a>
+            <a href="../../index.html">Back to home</a>
+          </div>
+        </section>
+      </article>
+    </div>
   </main>
+
+  <script src="script.js"></script>
 </body>
 </html>
