@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Crazy OS — Utter Pulsar</title>
+  <meta name="description" content="Crazy OS is a native OSAgent operating system experiment where Crazy can operate the system and users can shape how real information is presented.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2032%2032%27%3E%3Crect%20width%3D%2732%27%20height%3D%2732%27%20rx%3D%278%27%20fill%3D%27%23070709%27/%3E%3Ccircle%20cx%3D%2716%27%20cy%3D%2716%27%20r%3D%277%27%20fill%3D%27none%27%20stroke%3D%27%23a8d8ff%27%20stroke-width%3D%271.8%27/%3E%3Cpath%20d%3D%27M5%2017c5-7%2016-7%2022%200M7%2022c4-4%2014-4%2018%200%27%20fill%3D%27none%27%20stroke%3D%27%23ffb35c%27%20stroke-width%3D%271.6%27%20stroke-linecap%3D%27round%27/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="progress" id="progress"></div>
+  <div class="page-noise" aria-hidden="true"></div>
+  <div class="ambient" aria-hidden="true"><span></span><span></span></div>
+
+  <header class="site-header">
+    <a class="brand" href="../../index.html" aria-label="Back to Utter Pulsar home">
+      <span class="brand-mark"><span></span></span>
+      <span>utterpulsar</span>
+    </a>
+    <nav class="top-nav" aria-label="Project navigation">
+      <a href="../../index.html">Home</a>
+      <a href="https://github.com/Utter-pulsar/crazy-os" target="_blank" rel="noreferrer">GitHub</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero article-shell">
+      <p class="kicker">Crazy OS · native OSAgent system</p>
+      <h1>An OS where the agent is native.</h1>
+      <p class="lede">Crazy OS is an operating system experiment built around a native OSAgent. Crazy is not a plug-in beside the desktop; Crazy can operate the OS itself, while the user decides how real system information should be handled, filtered, presented, or directly controlled.</p>
+      <div class="hero-meta" aria-label="Project facts">
+        <span>Native OSAgent</span>
+        <span>Electron · React</span>
+        <span>real system surfaces</span>
+        <span>user-shaped interface</span>
+      </div>
+    </section>
+
+    <section class="feature-video article-wide" aria-label="Crazy OS preview">
+      <video src="../../assets/crazy-os/open_apps.mp4" autoplay muted loop playsinline preload="metadata"></video>
+      <div class="video-caption">
+        <span>Demo 01</span>
+        <p>Opening an app surface only when the task needs one.</p>
+      </div>
+    </section>
+
+    <div class="article-grid article-shell">
+      <aside class="toc" aria-label="Table of contents">
+        <a href="#premise" class="active">Premise</a>
+        <a href="#model">The model</a>
+        <a href="#demos">Demos</a>
+        <a href="#architecture">Architecture</a>
+        <a href="#status">Status</a>
+      </aside>
+
+      <article class="article-body">
+        <section id="premise" class="prose-section">
+          <p class="section-label">Premise</p>
+          <h2>A native OSAgent operating system.</h2>
+          <p>Crazy OS starts from a direct premise: the agent is not an assistant installed on top of an existing desktop. The system itself is designed as an OSAgent-native OS. Crazy is part of the operating model, with permission to read, reason about, and operate the same real system surfaces the user can see.</p>
+          <p>The information is not theatrical. Files, app state, time, windows, tasks, settings, and generated surfaces are treated as real operating-system material. What changes is the interaction layer: the user can decide whether that material should appear as a full app, a small partial view, a temporary explanation, or no visible app at all.</p>
+          <blockquote>Crazy OS is an OS where Crazy can operate everything, but the user remains the one who shapes how the OS is presented, customized, and directly controlled.</blockquote>
+        </section>
+
+        <section id="model" class="prose-section">
+          <p class="section-label">The model</p>
+          <h2>Real information, user-defined presentation.</h2>
+          <p>The core idea is not to replace every interface with chat. It is to make the boundary between agent action and direct operation flexible. Sometimes the best interface is a complete app. Sometimes it is only the exact slice of information needed. Sometimes Crazy should process the information and return a result without opening anything. Sometimes the user should ignore Crazy entirely and operate the OS directly.</p>
+          <div class="principle-grid">
+            <div>
+              <span>01</span>
+              <h3>Native agency</h3>
+              <p>Crazy is built into the OS model and can operate files, apps, settings, windows, and system state.</p>
+            </div>
+            <div>
+              <span>02</span>
+              <h3>Real system context</h3>
+              <p>The surfaces are connected to real information rather than decorative mock data.</p>
+            </div>
+            <div>
+              <span>03</span>
+              <h3>Custom presentation</h3>
+              <p>The user decides whether information becomes a full interface, a partial view, or an invisible operation.</p>
+            </div>
+            <div>
+              <span>04</span>
+              <h3>Direct control remains</h3>
+              <p>The OS can still be used manually; Crazy is powerful, but not the only way to act.</p>
+            </div>
+          </div>
+        </section>
+      </article>
+    </div>
+
+    <section id="demos" class="demo-section article-wide">
+      <div class="section-intro">
+        <p class="section-label">Demos</p>
+        <h2>Five views of a native Agent OS.</h2>
+        <p>Each clip shows a different relation between the user, Crazy, and the OS: opening app surfaces, operating system state, changing time-based presentation, searching through real context, and revising interfaces after they already exist.</p>
+      </div>
+
+      <div class="demo-list">
+        <article class="demo-card">
+          <video src="../../assets/crazy-os/open_apps.mp4" autoplay muted loop playsinline preload="metadata"></video>
+          <div>
+            <span>01</span>
+            <h3>Open the surface that fits the task</h3>
+            <p>Crazy can create or open an application surface when the user needs one, instead of forcing every operation into a fixed app-first workflow.</p>
+          </div>
+        </article>
+
+        <article class="demo-card reverse">
+          <video src="../../assets/crazy-os/system_operation.mp4" autoplay muted loop playsinline preload="metadata"></video>
+          <div>
+            <span>02</span>
+            <h3>Operate the system itself</h3>
+            <p>Crazy can work across files, shortcuts, settings, windows, and visible desktop state because OS operation is part of the native model.</p>
+          </div>
+        </article>
+
+        <article class="demo-card">
+          <video src="../../assets/crazy-os/time_changing.mp4" autoplay muted loop playsinline preload="metadata"></video>
+          <div>
+            <span>03</span>
+            <h3>Change how information appears</h3>
+            <p>The same real context can be presented differently over time: expanded, reduced, reorganized, or hidden until it matters.</p>
+          </div>
+        </article>
+
+        <article class="demo-card reverse">
+          <video src="../../assets/crazy-os/search_app.mp4" autoplay muted loop playsinline preload="metadata"></video>
+          <div>
+            <span>04</span>
+            <h3>Process context without ceremony</h3>
+            <p>Search and interpretation do not always need a full application. Crazy can turn system context into the needed answer or surface.</p>
+          </div>
+        </article>
+
+        <article class="demo-card">
+          <video src="../../assets/crazy-os/change_app.mp4" autoplay muted loop playsinline preload="metadata"></video>
+          <div>
+            <span>05</span>
+            <h3>Revise the interface after it exists</h3>
+            <p>Presentation remains user-defined. A surface can keep changing after it appears, because the OS treats interface shape as editable state.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <div class="article-grid article-shell tail-grid">
+      <aside class="toc ghost" aria-hidden="true"></aside>
+      <article class="article-body">
+        <section id="architecture" class="prose-section">
+          <p class="section-label">Architecture</p>
+          <h2>A desktop shell for testing OS-native agency.</h2>
+          <p>Crazy OS is currently built with Electron and React as a working prototype of the OSAgent idea. Model configuration lives inside system settings, Crazy sits inside the desktop environment, and generated views are rendered as evolving interface state.</p>
+          <p>The important boundary is not whether every detail already behaves like a finished commercial operating system. The boundary is whether an OS can make agent operation native: Crazy can act across the system, the user can still operate directly, and the presentation layer can be reshaped around the exact amount of information needed.</p>
+        </section>
+
+        <section id="status" class="prose-section status-panel">
+          <p class="section-label">Status</p>
+          <h2>A prototype for a native Agent OS.</h2>
+          <p>Crazy OS is still a personal prototype, but the direction is clear: an OS where real information can be operated by Crazy, presented in the form the user chooses, or handled directly by the user without involving the agent at all.</p>
+          <div class="final-links">
+            <a href="https://github.com/Utter-pulsar/crazy-os" target="_blank" rel="noreferrer">View repository</a>
+            <a href="../../index.html">Back to home</a>
+          </div>
+        </section>
+      </article>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

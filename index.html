@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Utter Pulsar — Imagination Lab</title>
+  <meta name="description" content="A quiet homepage for Utter Pulsar's personal projects and software experiments.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2032%2032%27%3E%3Crect%20width%3D%2732%27%20height%3D%2732%27%20rx%3D%278%27%20fill%3D%27%23070709%27/%3E%3Ccircle%20cx%3D%2716%27%20cy%3D%2716%27%20r%3D%277%27%20fill%3D%27none%27%20stroke%3D%27%23a8d8ff%27%20stroke-width%3D%271.8%27/%3E%3Cpath%20d%3D%27M5%2017c5-7%2016-7%2022%200M7%2022c4-4%2014-4%2018%200%27%20fill%3D%27none%27%20stroke%3D%27%23ffb35c%27%20stroke-width%3D%271.6%27%20stroke-linecap%3D%27round%27/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="cosmos" aria-hidden="true">
+    <div class="ambient ambient-a"></div>
+    <div class="ambient ambient-b"></div>
+    <div class="quiet-grid"></div>
+    <div class="grain"></div>
+  </div>
+
+  <header class="site-header">
+    <a class="brand" href="./" aria-label="Utter Pulsar home">
+      <span class="brand-mark"><span></span></span>
+      <span>utterpulsar</span>
+    </a>
+
+    <nav class="nav-links" aria-label="Primary navigation">
+      <div class="nav-item projects-menu">
+        <button class="nav-trigger" type="button" aria-haspopup="true" aria-expanded="false">Projects</button>
+        <div class="project-dropdown" role="menu" aria-label="Projects">
+          <a class="drop-row" href="projects/crazy-os/index.html" role="menuitem">
+            <strong>Crazy OS</strong>
+            <span>agent desktop experiment</span>
+          </a>
+          <a class="drop-row" href="projects/api-yes/index.html" role="menuitem">
+            <strong>API YES</strong>
+            <span>local API key cockpit</span>
+          </a>
+          <a class="drop-row" href="projects/doodlepilot/index.html" role="menuitem">
+            <strong>DoodlePilot</strong>
+            <span>hand-drawn work companion</span>
+          </a>
+          <a class="drop-row" href="projects/meow-monitor/index.html" role="menuitem">
+            <strong>Meow Monitor</strong>
+            <span>secondary-screen cyber rail</span>
+          </a>
+          <a class="drop-row" href="projects/mlp-from-scratch/index.html" role="menuitem">
+            <strong>MLP From Scratch</strong>
+            <span>neural networks by hand</span>
+          </a>
+          <a class="drop-row" href="projects/understanding-bayes/index.html" role="menuitem">
+            <strong>Understanding Bayes</strong>
+            <span>pattern recognition study</span>
+          </a>
+        </div>
+      </div>
+
+      <a class="nav-link" href="https://github.com/Utter-pulsar" target="_blank" rel="noreferrer">GitHub</a>
+    </nav>
+  </header>
+
+  <main class="home-shell" aria-label="Homepage">
+    <section class="hero-panel">
+      <div class="imagination-stage" id="imaginationStage" aria-hidden="true">
+        <canvas class="particle-canvas" id="particleCanvas"></canvas>
+        <div class="particle-vignette"></div>
+        <span class="data-scan scan-a"></span>
+        <span class="data-scan scan-b"></span>
+      </div>
+
+      <div class="hero-copy-wrap">
+        <p class="eyebrow"><span></span>UTTER PULSAR'S HOME</p>
+        <h1>Ideas do not need permission to begin.</h1>
+        <p>This is a quiet home for my projects — a space where imagination can move freely before it becomes a tool, a system, an interface, or simply a sketch worth keeping.</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
