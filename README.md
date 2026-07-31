@@ -24,8 +24,10 @@ Important files:
 - `index.html` — homepage.
 - `styles.css` and `script.js` — homepage styling and particle animation.
 - `projects/crazy-os/` — Crazy OS project page.
-- `projects/api-yes/`, `projects/doodlepilot/`, `projects/meow-monitor/`, `projects/mlp-from-scratch/`, `projects/understanding-bayes/` — local coming-soon project pages.
+- `projects/mlp-from-scratch/` — MLP Without Third-Party Library article page with HTML and LaTeX formula derivations.
+- `projects/api-yes/`, `projects/doodlepilot/`, `projects/meow-monitor/`, `projects/understanding-bayes/` — local coming-soon project pages.
 - `assets/crazy-os/*.mp4` — self-contained Crazy OS demo videos used by the Crazy OS page.
+- `assets/mlp-theory-pages/*.png` — exported page images from the original MLP theory PDF, kept as reference assets.
 - `CNAME` — custom domain configuration for `www.wumuhuan.com`.
 - `.nojekyll` — tells GitHub Pages to publish files exactly as static assets.
 

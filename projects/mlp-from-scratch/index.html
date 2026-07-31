@@ -67,29 +67,72 @@
           <title id="mlp-title">Schematic diagram of MLP</title>
           <desc id="mlp-desc">Input layer nodes connect to hidden layer nodes, which connect to output layer nodes.</desc>
           <defs>
-            <linearGradient id="edge" x1="0" x2="1">
-              <stop offset="0" stop-color="#a8d8ff" stop-opacity=".22"></stop>
-              <stop offset="1" stop-color="#ffb35c" stop-opacity=".28"></stop>
-            </linearGradient>
-            <radialGradient id="node" cx="50%" cy="44%" r="60%">
-              <stop offset="0" stop-color="#ffffff" stop-opacity=".92"></stop>
-              <stop offset=".36" stop-color="#a8d8ff" stop-opacity=".5"></stop>
-              <stop offset="1" stop-color="#0c121a" stop-opacity="1"></stop>
-            </radialGradient>
+            <filter id="fiberGlow" x="-40%" y="-40%" width="180%" height="180%">
+              <feGaussianBlur stdDeviation="2.2" result="blur"></feGaussianBlur>
+              <feMerge>
+                <feMergeNode in="blur"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+              </feMerge>
+            </filter>
           </defs>
-          <g class="edges">
-            <path d="M170 140 L438 95 M170 140 L438 205 M170 140 L438 315 M170 140 L438 425"></path>
-            <path d="M170 260 L438 95 M170 260 L438 205 M170 260 L438 315 M170 260 L438 425"></path>
-            <path d="M170 380 L438 95 M170 380 L438 205 M170 380 L438 315 M170 380 L438 425"></path>
-            <path d="M438 95 L710 150 M438 95 L710 260 M438 95 L710 370"></path>
-            <path d="M438 205 L710 150 M438 205 L710 260 M438 205 L710 370"></path>
-            <path d="M438 315 L710 150 M438 315 L710 260 M438 315 L710 370"></path>
-            <path d="M438 425 L710 150 M438 425 L710 260 M438 425 L710 370"></path>
+          <g class="edges base-edges">
+            <line x1="170" y1="140" x2="438" y2="95"></line>
+            <line x1="170" y1="140" x2="438" y2="205"></line>
+            <line x1="170" y1="140" x2="438" y2="315"></line>
+            <line x1="170" y1="140" x2="438" y2="425"></line>
+            <line x1="170" y1="260" x2="438" y2="95"></line>
+            <line x1="170" y1="260" x2="438" y2="205"></line>
+            <line x1="170" y1="260" x2="438" y2="315"></line>
+            <line x1="170" y1="260" x2="438" y2="425"></line>
+            <line x1="170" y1="380" x2="438" y2="95"></line>
+            <line x1="170" y1="380" x2="438" y2="205"></line>
+            <line x1="170" y1="380" x2="438" y2="315"></line>
+            <line x1="170" y1="380" x2="438" y2="425"></line>
+            <line x1="438" y1="95" x2="710" y2="150"></line>
+            <line x1="438" y1="95" x2="710" y2="260"></line>
+            <line x1="438" y1="95" x2="710" y2="370"></line>
+            <line x1="438" y1="205" x2="710" y2="150"></line>
+            <line x1="438" y1="205" x2="710" y2="260"></line>
+            <line x1="438" y1="205" x2="710" y2="370"></line>
+            <line x1="438" y1="315" x2="710" y2="150"></line>
+            <line x1="438" y1="315" x2="710" y2="260"></line>
+            <line x1="438" y1="315" x2="710" y2="370"></line>
+            <line x1="438" y1="425" x2="710" y2="150"></line>
+            <line x1="438" y1="425" x2="710" y2="260"></line>
+            <line x1="438" y1="425" x2="710" y2="370"></line>
+          </g>
+          <g class="edges fiber-edges input-to-hidden" filter="url(#fiberGlow)" aria-hidden="true">
+            <line style="--delay: 0s" x1="170" y1="140" x2="438" y2="95"></line>
+            <line style="--delay: .12s" x1="170" y1="140" x2="438" y2="205"></line>
+            <line style="--delay: .24s" x1="170" y1="140" x2="438" y2="315"></line>
+            <line style="--delay: .36s" x1="170" y1="140" x2="438" y2="425"></line>
+            <line style="--delay: .18s" x1="170" y1="260" x2="438" y2="95"></line>
+            <line style="--delay: .30s" x1="170" y1="260" x2="438" y2="205"></line>
+            <line style="--delay: .42s" x1="170" y1="260" x2="438" y2="315"></line>
+            <line style="--delay: .54s" x1="170" y1="260" x2="438" y2="425"></line>
+            <line style="--delay: .36s" x1="170" y1="380" x2="438" y2="95"></line>
+            <line style="--delay: .48s" x1="170" y1="380" x2="438" y2="205"></line>
+            <line style="--delay: .60s" x1="170" y1="380" x2="438" y2="315"></line>
+            <line style="--delay: .72s" x1="170" y1="380" x2="438" y2="425"></line>
+          </g>
+          <g class="edges fiber-edges hidden-to-output" filter="url(#fiberGlow)" aria-hidden="true">
+            <line style="--delay: 1.18s" x1="438" y1="95" x2="710" y2="150"></line>
+            <line style="--delay: 1.34s" x1="438" y1="95" x2="710" y2="260"></line>
+            <line style="--delay: 1.50s" x1="438" y1="95" x2="710" y2="370"></line>
+            <line style="--delay: 1.30s" x1="438" y1="205" x2="710" y2="150"></line>
+            <line style="--delay: 1.46s" x1="438" y1="205" x2="710" y2="260"></line>
+            <line style="--delay: 1.62s" x1="438" y1="205" x2="710" y2="370"></line>
+            <line style="--delay: 1.42s" x1="438" y1="315" x2="710" y2="150"></line>
+            <line style="--delay: 1.58s" x1="438" y1="315" x2="710" y2="260"></line>
+            <line style="--delay: 1.74s" x1="438" y1="315" x2="710" y2="370"></line>
+            <line style="--delay: 1.54s" x1="438" y1="425" x2="710" y2="150"></line>
+            <line style="--delay: 1.70s" x1="438" y1="425" x2="710" y2="260"></line>
+            <line style="--delay: 1.86s" x1="438" y1="425" x2="710" y2="370"></line>
           </g>
           <g class="nodes input">
-            <circle cx="170" cy="140" r="36"></circle><text x="170" y="146">x₁</text>
-            <circle cx="170" cy="260" r="36"></circle><text x="170" y="266">x₂</text>
-            <circle cx="170" cy="380" r="36"></circle><text x="170" y="386">b₁</text>
+            <circle cx="170" cy="140" r="36"></circle><text x="94" y="146">x₁</text>
+            <circle cx="170" cy="260" r="36"></circle><text x="94" y="266">x₂</text>
+            <circle cx="170" cy="380" r="36"></circle><text x="94" y="386">b₁</text>
           </g>
           <g class="nodes hidden">
             <circle cx="438" cy="95" r="42"></circle>
