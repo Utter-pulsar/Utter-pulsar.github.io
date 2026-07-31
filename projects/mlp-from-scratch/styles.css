@@ -24,6 +24,8 @@
 html {
   scroll-behavior: smooth;
   background: var(--bg);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
@@ -624,6 +626,7 @@ a {
   grid-template-columns: 190px minmax(0, 820px);
   gap: clamp(38px, 7vw, 92px);
   align-items: start;
+  min-width: 0;
 }
 
 .toc {
@@ -732,6 +735,16 @@ blockquote {
 
 .article-body {
   --math-panel-width: 100%;
+  min-width: 0;
+}
+
+.prose-section,
+.formula-grid,
+.equation-card,
+.code-card,
+.status-panel,
+blockquote {
+  min-width: 0;
 }
 
 .article-body .equation-card,
@@ -841,6 +854,24 @@ mjx-container[jax="CHTML"][display="true"] {
 
   .hero h1 {
     font-size: clamp(46px, 16vw, 78px);
+  }
+
+  .prose-section h2 {
+    font-size: clamp(30px, 10vw, 42px);
+    line-height: 1.04;
+    letter-spacing: -.05em;
+  }
+
+  .prose-section p:not(.section-label) {
+    font-size: 15px;
+    line-height: 1.72;
+    overflow-wrap: anywhere;
+  }
+
+  blockquote {
+    padding: 22px 20px;
+    font-size: 20px;
+    line-height: 1.36;
   }
 
   .feature-panel,
