@@ -1,0 +1,12 @@
+{
+  "name": "utter-pulsar-local-server",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Zero-dependency local static server for the Utter Pulsar website.",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
