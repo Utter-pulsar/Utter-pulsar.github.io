@@ -400,6 +400,24 @@ button {
   isolation: isolate;
   transform-style: preserve-3d;
   transition: transform .28s ease-out;
+  -webkit-mask-image: radial-gradient(
+    ellipse 50% 50% at center,
+    #000 0%,
+    #000 48%,
+    rgba(0, 0, 0, .7) 72%,
+    transparent 100%
+  );
+  mask-image: radial-gradient(
+    ellipse 50% 50% at center,
+    #000 0%,
+    #000 48%,
+    rgba(0, 0, 0, .7) 72%,
+    transparent 100%
+  );
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
 }
 
 .particle-canvas {
@@ -416,10 +434,7 @@ button {
   inset: 0;
   z-index: 3;
   pointer-events: none;
-  background:
-    linear-gradient(90deg, #05060a 0%, transparent 16%, transparent 84%, #05060a 100%),
-    linear-gradient(180deg, #05060a 0%, transparent 22%, transparent 78%, #05060a 100%),
-    radial-gradient(circle at 50% 50%, transparent 0%, transparent 38%, rgba(5, 6, 10, .48) 74%, #05060a 100%);
+  background: none;
 }
 
 .data-scan {
