@@ -1,18 +1,34 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>API YES — Utter Pulsar</title>
-  <meta name="description" content="API YES is a local API key cockpit by Utter Pulsar. A full project page is coming soon.">
+  <meta name="description" content="API YES is a local API gateway for managing personal provider keys and exposing customized local API services.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2032%2032%27%3E%3Crect%20width%3D%2732%27%20height%3D%2732%27%20rx%3D%278%27%20fill%3D%27%23070709%27/%3E%3Ccircle%20cx%3D%2716%27%20cy%3D%2716%27%20r%3D%277%27%20fill%3D%27none%27%20stroke%3D%27%23a8d8ff%27%20stroke-width%3D%271.8%27/%3E%3Cpath%20d%3D%27M5%2017c5-7%2016-7%2022%200M7%2022c4-4%2014-4%2018%200%27%20fill%3D%27none%27%20stroke%3D%27%23ffb35c%27%20stroke-width%3D%271.6%27%20stroke-linecap%3D%27round%27/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../coming-soon.css">
+  <link rel="stylesheet" href="../crazy-os/styles.css">
+  <style>
+    :root {
+      --accent: #7fe7c9;
+      --blue: #9bd7ff;
+      --green: #b6f59a;
+    }
+
+    body {
+      background:
+        radial-gradient(circle at 50% 0%, rgba(127, 231, 201, .08), transparent 28%),
+        radial-gradient(circle at 85% 18%, rgba(155, 215, 255, .08), transparent 26%),
+        var(--bg);
+    }
+  </style>
 </head>
 <body>
-  <div class="page-bg" aria-hidden="true"></div>
-  <div class="grain" aria-hidden="true"></div>
+  <div class="progress" id="progress"></div>
+  <div class="page-noise" aria-hidden="true"></div>
+  <div class="ambient" aria-hidden="true"><span></span><span></span></div>
 
   <header class="site-header">
     <a class="brand" href="../../index.html" aria-label="Back to Utter Pulsar home">
@@ -21,25 +37,131 @@
     </a>
     <nav class="top-nav" aria-label="Project navigation">
       <a href="../../index.html">Home</a>
-      <a href="https://github.com/Utter-pulsar" target="_blank" rel="noreferrer">GitHub</a>
+      <a href="https://github.com/Utter-pulsar/api_yes" target="_blank" rel="noreferrer">GitHub</a>
     </nav>
   </header>
 
   <main>
-    <section class="soon-card" aria-label="API YES coming soon">
-      <p class="kicker">API YES · local API key cockpit</p>
-      <h1>Coming soon.</h1>
-      <p class="lede">A dedicated page for API YES is being prepared. It will introduce the local desktop cockpit for managing API keys, model access, and creative tool workflows.</p>
-      <div class="status-row" aria-label="Project status">
-        <span>Electron</span>
-        <span>React</span>
-        <span>Local-first</span>
-        <span>In progress</span>
-      </div>
-      <div class="actions">
-        <a href="../../index.html">Back to home</a>
+    <section class="hero article-shell">
+      <p class="kicker">API YES · local API service hub</p>
+      <h1>One local gateway for every API key.</h1>
+      <p class="lede">API YES is a personal desktop control plane for API keys. Upstream provider keys stay on the local machine, and API YES turns them into local API services with the URL, access key, scope, and request format each tool actually needs.</p>
+      <div class="hero-meta" role="group" aria-label="Project facts">
+        <span>Local API gateway</span>
+        <span>provider key management</span>
+        <span>OpenAI · Responses · Anthropic</span>
+        <span>usage history</span>
+        <span>Windows · macOS · Linux</span>
       </div>
     </section>
+
+    <section class="feature-video article-wide" aria-label="API YES preview">
+      <video src="../../assets/api-yes/set_test_api_with_record.mp4" muted loop playsinline preload="none"></video>
+      <div class="video-caption">
+        <span>Demo 01</span>
+        <p>Create a local API entry, test it, and keep the usage record.</p>
+      </div>
+    </section>
+
+    <div class="article-grid article-shell">
+      <aside class="toc" aria-label="Table of contents">
+        <a href="#premise" class="active">Premise</a>
+        <a href="#model">Local model</a>
+        <a href="#demos">Demos</a>
+        <a href="#architecture">Architecture</a>
+        <a href="#status">Status</a>
+      </aside>
+
+      <article class="article-body">
+        <section id="premise" class="prose-section">
+          <p class="section-label">Premise</p>
+          <h2>A local gateway instead of scattered keys.</h2>
+          <p>API keys usually end up spread across tools, scripts, and temporary experiments. API YES starts from a simpler operating model: collect the provider-owned keys in one local desktop app, then let local endpoints represent the exact services that downstream tools should use.</p>
+          <p>The upstream provider API stays unified inside API YES. The tool using the model does not need to know where the original key came from, which base URL it uses, or which compatible format it expects. It receives a local URL and a local access key; API YES handles the routing, pass-through, limits, and records around that request.</p>
+          <blockquote>API YES is a personal API gateway: provider APIs go in, customized local API services come out.</blockquote>
+        </section>
+
+        <section id="model" class="prose-section">
+          <p class="section-label">Local model</p>
+          <h2>Provider APIs in, customized local services out.</h2>
+          <p>The important idea is not to create another cloud account or enterprise secrets manager. API YES is a local-first control layer for personal development: one place to store owned keys, one place to start the local server, and one place to expose separate API shapes for separate tools.</p>
+          <div class="principle-grid">
+            <div>
+              <span>01</span>
+              <h3>Keys stay local</h3>
+              <p>Provider keys are stored on the desktop and encrypted through the operating system keychain.</p>
+            </div>
+            <div>
+              <span>02</span>
+              <h3>Local API entries</h3>
+              <p>Each downstream tool can receive its own generated local URL and access key, with loopback or LAN access.</p>
+            </div>
+            <div>
+              <span>03</span>
+              <h3>Format adapters</h3>
+              <p>OpenAI, OpenAI Responses, and Anthropic-style interfaces can be exposed from the same local control plane.</p>
+            </div>
+            <div>
+              <span>04</span>
+              <h3>Visible usage</h3>
+              <p>Request history, token tallies, quick tests, and token ceilings make each local service easier to inspect.</p>
+            </div>
+          </div>
+        </section>
+      </article>
+    </div>
+
+    <section id="demos" class="demo-section article-wide">
+      <div class="section-intro">
+        <p class="section-label">Demos</p>
+        <h2>Two cuts of the local API workflow.</h2>
+        <p>The clips focus on the path API YES is built around: create a local service from an owned upstream key, test the service, and inspect the recorded activity afterward.</p>
+      </div>
+
+      <div class="demo-list">
+        <article class="demo-card">
+          <video src="../../assets/api-yes/set_test_api_with_record.mp4" muted loop playsinline preload="none"></video>
+          <div>
+            <span>01</span>
+            <h3>Create and test a local service</h3>
+            <p>Add the upstream key once, generate a local API entry, choose the compatible request format, and run a quick test before using it elsewhere.</p>
+          </div>
+        </article>
+
+        <article class="demo-card reverse">
+          <video src="../../assets/api-yes/Record_history_check.mp4" muted loop playsinline preload="none"></video>
+          <div>
+            <span>02</span>
+            <h3>Review the request record</h3>
+            <p>API YES keeps usage visible at the key level: requests, token totals, cached tokens, reasoning tokens, and ceilings that can stop exhausted local entries with HTTP 429.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <div class="article-grid article-shell tail-grid">
+      <div class="toc ghost" aria-hidden="true"></div>
+      <article class="article-body">
+        <section id="architecture" class="prose-section">
+          <p class="section-label">Architecture</p>
+          <h2>An Electron desktop app with a local HTTP server.</h2>
+          <p>API YES is built with Electron, Vite, React, TypeScript, Zustand, Tailwind CSS, framer-motion, and Rough.js. The local API server defaults to <code>127.0.0.1:8788</code>, while application data lives in the operating system app-data area and secrets are encrypted with Electron safeStorage.</p>
+          <p>The server is designed as a format-faithful pass-through layer: compatible tools can point at a local base URL while provider-specific parameters, access settings, and request accounting stay centralized inside API YES.</p>
+        </section>
+
+        <section id="status" class="prose-section status-panel">
+          <p class="section-label">Status</p>
+          <h2>A personal gateway for local API control.</h2>
+          <p>API YES is a personal local tool, not an enterprise secrets platform. Its value is practical: fewer scattered keys, clearer local endpoints, quick testing, and usage visibility around the APIs used by everyday tools.</p>
+          <div class="final-links">
+            <a href="https://github.com/Utter-pulsar/api_yes" target="_blank" rel="noreferrer">View repository</a>
+            <a href="../../index.html">Back to home</a>
+          </div>
+        </section>
+      </article>
+    </div>
   </main>
+
+  <script src="../crazy-os/script.js"></script>
 </body>
 </html>

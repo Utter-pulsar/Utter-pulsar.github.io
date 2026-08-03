@@ -25,7 +25,8 @@ Important files:
 - `styles.css` and `script.js` — homepage styling and particle animation.
 - `projects/crazy-os/` — Crazy OS project page.
 - `projects/mlp-from-scratch/` — MLP Without Third-Party Library article page with HTML and LaTeX formula derivations.
-- `projects/api-yes/`, `projects/doodlepilot/`, `projects/meow-monitor/`, `projects/understanding-bayes/` — local coming-soon project pages.
+- `projects/api-yes/` and `projects/doodlepilot/` — finished first-pass project article pages.
+- `projects/meow-monitor/` and `projects/understanding-bayes/` — local coming-soon project pages.
 - `assets/crazy-os/*.mp4` — self-contained Crazy OS demo videos used by the Crazy OS page.
 - `assets/mlp-theory-pages/*.png` — exported page images from the original MLP theory PDF, kept as reference assets.
 - `CNAME` — custom domain configuration for `www.wumuhuan.com`.
@@ -70,4 +71,4 @@ http://localhost:8080/
 
 - The site is currently fully static: HTML, CSS, and JavaScript only.
 - Crazy OS videos are copied into `assets/crazy-os/` so the uploaded folder is self-contained.
-- Non-Crazy project pages are intentionally minimal coming-soon pages and can be replaced one by one later.
+- Remaining coming-soon project pages are intentionally minimal and can be replaced one by one later.

@@ -1,18 +1,55 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>DoodlePilot — Utter Pulsar</title>
-  <meta name="description" content="DoodlePilot is a hand-drawn work companion by Utter Pulsar. A full project page is coming soon.">
+  <meta name="description" content="DoodlePilot is a desktop work companion for tasks, daily archives, reminders, and API-powered screenshot translation.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2032%2032%27%3E%3Crect%20width%3D%2732%27%20height%3D%2732%27%20rx%3D%278%27%20fill%3D%27%23070709%27/%3E%3Ccircle%20cx%3D%2716%27%20cy%3D%2716%27%20r%3D%277%27%20fill%3D%27none%27%20stroke%3D%27%23a8d8ff%27%20stroke-width%3D%271.8%27/%3E%3Cpath%20d%3D%27M5%2017c5-7%2016-7%2022%200M7%2022c4-4%2014-4%2018%200%27%20fill%3D%27none%27%20stroke%3D%27%23ffb35c%27%20stroke-width%3D%271.6%27%20stroke-linecap%3D%27round%27/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../coming-soon.css">
+  <link rel="stylesheet" href="../crazy-os/styles.css">
+  <style>
+    :root {
+      --accent: #ffd447;
+      --blue: #b9f0ff;
+      --green: #87df6f;
+    }
+
+    body {
+      background:
+        radial-gradient(circle at 46% 0%, rgba(255, 212, 71, .09), transparent 28%),
+        radial-gradient(circle at 86% 18%, rgba(135, 223, 111, .07), transparent 26%),
+        var(--bg);
+    }
+
+    .demo-card img {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: #0b0d0f;
+      box-shadow: 0 30px 100px rgba(0, 0, 0, .5);
+    }
+
+    .demo-card.reverse img {
+      order: 2;
+    }
+
+    @media (max-width: 900px) {
+      .demo-card.reverse img {
+        order: 0;
+      }
+    }
+  </style>
 </head>
 <body>
-  <div class="page-bg" aria-hidden="true"></div>
-  <div class="grain" aria-hidden="true"></div>
+  <div class="progress" id="progress"></div>
+  <div class="page-noise" aria-hidden="true"></div>
+  <div class="ambient" aria-hidden="true"><span></span><span></span></div>
 
   <header class="site-header">
     <a class="brand" href="../../index.html" aria-label="Back to Utter Pulsar home">
@@ -21,25 +58,158 @@
     </a>
     <nav class="top-nav" aria-label="Project navigation">
       <a href="../../index.html">Home</a>
-      <a href="https://github.com/Utter-pulsar" target="_blank" rel="noreferrer">GitHub</a>
+      <a href="https://github.com/Utter-pulsar/DoodlePilot" target="_blank" rel="noreferrer">GitHub</a>
     </nav>
   </header>
 
   <main>
-    <section class="soon-card" aria-label="DoodlePilot coming soon">
-      <p class="kicker">DoodlePilot · hand-drawn work companion</p>
-      <h1>Coming soon.</h1>
-      <p class="lede">A dedicated page for DoodlePilot is being prepared. It will introduce the playful desktop companion, hand-drawn interface language, and workspace ideas behind the project.</p>
-      <div class="status-row" aria-label="Project status">
-        <span>Electron</span>
-        <span>PixiJS</span>
-        <span>Rough.js</span>
-        <span>In progress</span>
-      </div>
-      <div class="actions">
-        <a href="../../index.html">Back to home</a>
+    <section class="hero article-shell">
+      <p class="kicker">DoodlePilot · desktop work companion</p>
+      <h1>A small pilot for everyday office work.</h1>
+      <p class="lede">DoodlePilot is a desktop work buddy for the daily things that otherwise scatter everywhere: project cards, today&apos;s tasks, a next-day rollover that archives today and carries unfinished work forward, alarms, and screenshot translation through API-connected multimodal models.</p>
+      <div class="hero-meta" role="group" aria-label="Project facts">
+        <span>Task board</span>
+        <span>daily archive</span>
+        <span>reminders</span>
+        <span>paper-plane alert</span>
+        <span>screenshot translation</span>
       </div>
     </section>
+
+    <section class="feature-video article-wide" aria-label="DoodlePilot preview">
+      <video src="../../assets/doodlepilot/project_manage.mp4" muted loop playsinline preload="none"></video>
+      <div class="video-caption">
+        <span>Demo 01</span>
+        <p>Manage project cards and keep the day&apos;s work in one desktop companion.</p>
+      </div>
+    </section>
+
+    <div class="article-grid article-shell">
+      <aside class="toc" aria-label="Table of contents">
+        <a href="#premise" class="active">Premise</a>
+        <a href="#model">Work model</a>
+        <a href="#demos">Demos</a>
+        <a href="#architecture">Architecture</a>
+        <a href="#status">Status</a>
+      </aside>
+
+      <article class="article-body">
+        <section id="premise" class="prose-section">
+          <p class="section-label">Premise</p>
+          <h2>An office companion that stays close to the day.</h2>
+          <p>DoodlePilot is built around a practical feeling: everyday work needs a small companion more than another heavy management system. It keeps project cards, daily tasks, reminders, and translation utilities in the same desktop space, so small obligations do not disappear between apps.</p>
+          <p>The project is personal and local-first. A task can move through the day, a reminder can interrupt at the right moment, and completed or unfinished work can be archived into history instead of becoming a pile of loose notes.</p>
+          <blockquote>DoodlePilot is the office buddy that keeps the board, the day, the alarm, and the translation tool within reach.</blockquote>
+        </section>
+
+        <section id="model" class="prose-section">
+          <p class="section-label">Work model</p>
+          <h2>Tasks, reminders, and translation in one loop.</h2>
+          <p>The app is organized around the rhythm of ordinary desk work. Plan the project board, decide what matters today, use &ldquo;Open next day&rdquo; to archive today&apos;s record and carry unfinished tasks forward, and turn to API-connected models when a screenshot needs to be translated without losing structure.</p>
+          <div class="principle-grid">
+            <div>
+              <span>01</span>
+              <h3>Project board</h3>
+              <p>Cards, lanes, fields, resizing, and reordering keep ongoing projects visible without forcing a rigid workflow.</p>
+            </div>
+            <div>
+              <span>02</span>
+              <h3>Daily archive</h3>
+              <p>Opening the next day archives today&apos;s record and carries unfinished tasks forward; archived days remain available in history.</p>
+            </div>
+            <div>
+              <span>03</span>
+              <h3>Reminder pilot</h3>
+              <p>Alarms can repeat, warn in advance, and send a small paper-plane nudge across the desktop when it is time.</p>
+            </div>
+            <div>
+              <span>04</span>
+              <h3>Screenshot translation</h3>
+              <p>Through an API-connected multimodal model, selected screen regions can be translated while preserving complex formula layout.</p>
+            </div>
+          </div>
+        </section>
+      </article>
+    </div>
+
+    <section id="demos" class="demo-section article-wide">
+      <div class="section-intro">
+        <p class="section-label">Demos</p>
+        <h2>Five everyday workflows.</h2>
+        <p>The demos show DoodlePilot as a compact desktop companion: a project manager, an alarm tool, a model setup surface, and a screenshot translation workflow for structured technical content.</p>
+      </div>
+
+      <div class="demo-list">
+        <article class="demo-card">
+          <video src="../../assets/doodlepilot/project_manage.mp4" muted loop playsinline preload="none"></video>
+          <div>
+            <span>01</span>
+            <h3>Manage the project board</h3>
+            <p>Use project lanes and task cards to keep current work visible, organized, and close to the rest of the desktop workflow.</p>
+          </div>
+        </article>
+
+        <article class="demo-card reverse">
+          <video src="../../assets/doodlepilot/set_clock.mp4" muted loop playsinline preload="none"></video>
+          <div>
+            <span>02</span>
+            <h3>Set a reminder that can actually interrupt</h3>
+            <p>DoodlePilot supports reminder times, advance notices, repeated nudges, and the little flying-plane alert that crosses the desktop when the reminder fires.</p>
+          </div>
+        </article>
+
+        <article class="demo-card">
+          <img src="../../assets/doodlepilot/screen_shot_api.png" width="2081" height="1400" alt="DoodlePilot multimodal model setup panel for screenshot translation">
+          <div>
+            <span>03</span>
+            <h3>Connect a multimodal model by API</h3>
+            <p>The screenshot translation feature can be wired to a model endpoint and key, then tested before the shortcut becomes part of the daily workflow.</p>
+          </div>
+        </article>
+
+        <article class="demo-card reverse">
+          <img src="../../assets/doodlepilot/screenshot_setup.png" width="2081" height="1400" alt="DoodlePilot screenshot translation settings panel">
+          <div>
+            <span>04</span>
+            <h3>Turn on screenshot translation</h3>
+            <p>Configure the shortcut, streaming behavior, and API-backed translation path for selecting a region of the screen and translating what is inside it.</p>
+          </div>
+        </article>
+
+        <article class="demo-card">
+          <video src="../../assets/doodlepilot/screenshot_translation.mp4" muted loop playsinline preload="none"></video>
+          <div>
+            <span>05</span>
+            <h3>Translate formulas without flattening the page</h3>
+            <p>Even when the screenshot contains dense technical notation, DoodlePilot aims to keep the original structure readable while translating the surrounding text.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <div class="article-grid article-shell tail-grid">
+      <div class="toc ghost" aria-hidden="true"></div>
+      <article class="article-body">
+        <section id="architecture" class="prose-section">
+          <p class="section-label">Architecture</p>
+          <h2>An Electron desktop companion with local data.</h2>
+          <p>DoodlePilot is built with Electron, Vite, React, TypeScript, Zustand, Tailwind CSS, framer-motion, PixiJS, Rough.js, and sql.js. The app stores its working state locally in SQLite, making the board, daily history, and reminder data part of the user&apos;s desktop environment.</p>
+          <p>The project also includes a typed query, command, event, and hook contract, which makes the desktop companion easier to extend as new personal workflows appear.</p>
+        </section>
+
+        <section id="status" class="prose-section status-panel">
+          <p class="section-label">Status</p>
+          <h2>A personal office buddy, still growing.</h2>
+          <p>DoodlePilot is an actively developed personal tool for planning work, remembering tasks, and turning API-connected model features into everyday desktop utilities.</p>
+          <div class="final-links">
+            <a href="https://github.com/Utter-pulsar/DoodlePilot" target="_blank" rel="noreferrer">View repository</a>
+            <a href="../../index.html">Back to home</a>
+          </div>
+        </section>
+      </article>
+    </div>
   </main>
+
+  <script src="../crazy-os/script.js"></script>
 </body>
 </html>
