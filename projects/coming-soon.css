@@ -1,5 +1,5 @@
 :root {
-  --bg: #05060a;
+  --bg: #000;
   --panel: rgba(255, 255, 255, .055);
   --line: rgba(255, 255, 255, .12);
   --text: #f4f5f0;
@@ -26,10 +26,7 @@ body {
   overflow: hidden;
   color: var(--text);
   font-family: Manrope, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  background:
-    radial-gradient(circle at 50% 0%, rgba(168, 216, 255, .12), transparent 28%),
-    radial-gradient(circle at 82% 70%, rgba(255, 179, 92, .08), transparent 26%),
-    #05060a;
+  background: #000;
   font-feature-settings: "liga" 1, "kern" 1;
 }
 
@@ -46,40 +43,10 @@ a {
   overflow: hidden;
 }
 
-.page-bg::before {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: min(760px, 82vw);
-  height: min(360px, 42vh);
-  border-radius: 999px;
-  translate: -50% -50%;
-  background: radial-gradient(circle, rgba(168, 216, 255, .16), rgba(168, 216, 255, .04) 46%, transparent 70%);
-  filter: blur(16px);
-  animation: breathe 7s ease-in-out infinite;
-}
-
-.page-bg::after {
-  content: "";
-  position: absolute;
-  inset: -20%;
-  opacity: .22;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, .05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, .05) 1px, transparent 1px);
-  background-size: 72px 72px;
-  mask-image: radial-gradient(circle at 50% 50%, #000, transparent 62%);
-}
-
+.page-bg::before,
+.page-bg::after,
 .grain {
-  position: fixed;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  opacity: .14;
-  mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%27220%27%20height%3D%27220%27%3E%3Cfilter%20id%3D%27n%27%3E%3CfeTurbulence%20type%3D%27fractalNoise%27%20baseFrequency%3D%270.82%27%20numOctaves%3D%272%27%20stitchTiles%3D%27stitch%27/%3E%3C/filter%3E%3Crect%20width%3D%27220%27%20height%3D%27220%27%20filter%3D%27url%28%23n%29%27/%3E%3C/svg%3E");
+  display: none;
 }
 
 .site-header {
@@ -112,18 +79,19 @@ a {
 
 .brand-mark {
   position: relative;
-  width: 20px;
-  height: 20px;
-  border: 1px solid rgba(255, 255, 255, .42);
+  width: 64px;
+  height: 64px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
   border-radius: 50%;
 }
 
-.brand-mark span {
-  position: absolute;
-  inset: 5px;
-  border-radius: inherit;
-  background: rgba(168, 216, 255, .82);
-  box-shadow: 0 0 18px rgba(168, 216, 255, .66);
+.brand-mark canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
 .top-nav {

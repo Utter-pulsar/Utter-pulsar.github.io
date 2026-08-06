@@ -1,5 +1,5 @@
 :root {
-  --bg: #05060a;
+  --bg: #000;
   --text: #f6f7fb;
   --muted: rgba(246, 247, 251, .62);
   --faint: rgba(246, 247, 251, .32);
@@ -56,15 +56,13 @@ button {
   inset: 0;
   z-index: -1;
   overflow: hidden;
-  background:
-    radial-gradient(circle at 50% 48%, rgba(83, 105, 158, .13), transparent 33%),
-    radial-gradient(circle at 50% 116%, rgba(107, 153, 206, .14), transparent 38%),
-    #05060a;
+  background: #000;
 }
 
 .ambient,
 .quiet-grid,
 .grain {
+  display: none;
   position: absolute;
   inset: 0;
   pointer-events: none;
@@ -138,7 +136,7 @@ button {
   justify-content: space-between;
   height: 76px;
   padding: 0 clamp(22px, 5vw, 72px);
-  background: linear-gradient(to bottom, rgba(5, 6, 10, .74), rgba(5, 6, 10, .12), transparent);
+  background: linear-gradient(to bottom, rgba(0, 0, 0, .74), rgba(0, 0, 0, .12), transparent);
   backdrop-filter: blur(18px);
 }
 
@@ -161,42 +159,19 @@ button {
 
 .brand-mark {
   position: relative;
-  width: 24px;
-  height: 24px;
-  border: 1px solid rgba(168, 216, 255, .64);
-  border-radius: 50%;
-  box-shadow: 0 0 22px rgba(168, 216, 255, .24);
-}
-
-.brand-mark::before,
-.brand-mark::after,
-.brand-mark span {
-  content: "";
-  position: absolute;
+  width: 64px;
+  height: 64px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
   border-radius: 50%;
 }
 
-.brand-mark::before {
-  inset: 5px;
-  border: 1px solid rgba(255, 179, 92, .74);
-}
-
-.brand-mark::after {
-  left: -5px;
-  right: -5px;
-  top: 10px;
-  height: 3px;
-  border-top: 1px solid rgba(255, 255, 255, .68);
-  transform: rotate(-9deg);
-}
-
-.brand-mark span {
-  width: 4px;
-  height: 4px;
-  right: 4px;
-  top: 4px;
-  background: var(--blue);
-  box-shadow: 0 0 10px var(--blue);
+.brand-mark canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
 .nav-links {
@@ -278,9 +253,7 @@ button {
   padding: 7px;
   border: 1px solid rgba(255, 255, 255, .12);
   border-radius: 21px;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, .09), rgba(255, 255, 255, .04)),
-    rgba(7, 9, 14, .88);
+  background: #000;
   box-shadow: 0 28px 110px rgba(0, 0, 0, .58), inset 0 1px 0 rgba(255, 255, 255, .08);
   backdrop-filter: blur(30px) saturate(1.16);
   opacity: 0;
@@ -305,9 +278,7 @@ button {
   inset: 0;
   border-radius: inherit;
   pointer-events: none;
-  background:
-    radial-gradient(circle at 78% 0%, rgba(168, 216, 255, .13), transparent 34%),
-    linear-gradient(90deg, transparent 49.8%, rgba(255, 255, 255, .055) 50%, transparent 50.2%);
+  background: none;
 }
 
 .projects-menu:hover .project-dropdown,
@@ -328,6 +299,7 @@ button {
   padding: 11px 15px;
   border-radius: 15px;
   overflow: hidden;
+  background: #000;
   transition: background .2s ease, transform .2s ease;
 }
 
@@ -336,14 +308,14 @@ button {
   position: absolute;
   inset: 5px;
   border-radius: 12px;
-  background: linear-gradient(135deg, rgba(168, 216, 255, .09), rgba(255, 255, 255, .035), transparent 72%);
+  background: none;
   opacity: 0;
   transition: opacity .2s;
 }
 
 .drop-row:hover,
 .drop-row:focus-visible {
-  background: rgba(255, 255, 255, .048);
+  background: #000;
   transform: translateY(-2px);
   outline: none;
 }
